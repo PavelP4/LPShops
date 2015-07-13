@@ -1,0 +1,79 @@
+﻿@model IEnumerable<LPShops.Models.Shop>
+
+@{
+    ViewBag.Title = "Home page";
+}
+
+<h2>Shops</h2>
+
+<div>
+    <p>
+        @Html.ActionLink("Create New", "CreateEdit")
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 160px;"></th>
+                <th style="width: 250px;">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th style="width: 250px;">
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th style="width: 350px;">
+                    @Html.DisplayNameFor(model => model.Mode)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr id="shopid_@item.ShopId">
+                <td>
+                    @Html.ActionLink("Edit", "CreateEdit", new { id = item.ShopId }) |                    
+                    <a class="shopDeleteLink" data-shopid="@item.ShopId">Delete</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mode)
+                </td>
+                <td>
+                    <a class="shopDetailsLink" data-shopid="@item.ShopId">Products</a>
+                </td>
+            </tr>
+        }
+
+</table>
+</div>
+<hr />
+<h4>Details</h4>
+<div>
+    <table class="table">    
+        <thead>
+            <tr>
+                <th style="width: 60px;">&nbsp;</th>
+                <th style="width: 300px;">
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </thead>           
+        <tbody id="tbodyDetails">
+
+        </tbody>
+    </table>
+</div>
+<br />
+<p id="errorLine" class="text-danger"></p>
+
+@section scripts
+{        
+}
